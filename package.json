@@ -1,0 +1,18 @@
+{
+  "main": "sources/index.js",
+  "scripts": {
+    "start": "node sources/index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "grammy": "^1.32.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.3",
+    "dotenv": "^16.4.5",
+    "typescript": "^5.7.2"
+  },
+  "overrides": {
+    "whatwg-url": "^14.0.0"
+  }
+}
