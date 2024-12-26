@@ -11,6 +11,12 @@ const client = new grammy.Bot(clientToken);
 
 const clientENV = process.env.NODE_ENV;
 
+client.command("start", clientCommandStart);
+
+async function clientCommandStart(context) {
+    await context.reply("Hello, world!");
+}
+
 if (clientENV == "release") {
     const application = express();
 
@@ -21,6 +27,12 @@ if (clientENV == "release") {
 
     application.use(clientRoute, clientWebhook);
 
+    application.get("/", getDefaultRoute);
+
+    function getDefaultRoute(request, response) {
+        response.send("<h1>Hello, world!</h1>");
+    }
+
     const server = application.listen(clientPort, serverListener);
 
     async function serverListener() {
@@ -28,6 +40,8 @@ if (clientENV == "release") {
         const serverPort = server.address().port;
 
         await client.api.setWebhook(`https://${clientAddress}:${clientPort}${clientRoute}`);
+
+        console.log(`${serverAddress}:${serverPort}`);
     }
 }
 

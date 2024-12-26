@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "dotenv": "^16.4.7"
+  },
+  "overrides": {
+    "whatwg-url": "^14.0.0"
   }
 }

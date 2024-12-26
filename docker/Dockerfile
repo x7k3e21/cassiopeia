@@ -1,16 +1,18 @@
 
 ARG BASE_IMAGE=node
-ARG BASE_VERSION=23.3.0-slim
+ARG BASE_VERSION=slim
 
 FROM ${BASE_IMAGE}:${BASE_VERSION}
 
-ARG WORKING_DIR=/usr/cassiopeia
+ARG APPLICATION_DIR=/usr/cassiopeia
 
-WORKDIR ${WORKING_DIR}
+WORKDIR ${APPLICATION_DIR}
 
-COPY package.json ${WORKING_DIR}/
-COPY sources ${WORKING_DIR}/sources
+ADD package.json ${APPLICATION_DIR}/
+ADD sources/index.js ${APPLICATION_DIR}/sources/
+
+EXPOSE 8443
 
 RUN npm install
 
-CMD npm run start
+CMD npm run start:debug
